@@ -7,7 +7,7 @@ const routes = require( './routes' );
 
 const app = express();
 
-const DEFAULT_PORT = 3000;
+const DEFAULT_PORT = 4000;
 
 app.use( cors() );
 app.use( express.urlencoded( { extended: true } ) );
