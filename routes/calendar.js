@@ -20,10 +20,10 @@ module.exports = function( request, response ){
             for ( const days of events ) {
                 for ( const date in days ) {
                     if ( !fullList[ date ] ) {
-                        fullList[ date ] = [];
+                        fullList[ date ] = [];
                     }
 
-                    fullList[ date ] = fullList[ date ].concat( days[ date ] );
+                    fullList[ date ] = fullList[ date ].concat( days[ date ] );
                 }
             }
 

@@ -3,7 +3,7 @@ const FeedMe = require( 'feedme' );
 const moment = require( 'moment' );
 
 module.exports = function( request, response ){
-    const url = `https://www.myepisodes.com/rss.php?feed=mylist&uid=mirrorer&pwdmd5=${ process.env.MYEPISODES }`;
+    const url = `https://www.myepisodes.com/rss.php?feed=mylist&uid=mirrorer&pwdmd5=${ process.env.MYEPISODES }`;
     got( url )
         .then( ( myEpisodesResponse ) => {
             const parser = new FeedMe();
@@ -18,7 +18,7 @@ module.exports = function( request, response ){
                 }
 
                 items[ dateStart.format( 'Y-MM-DD' ) ].push( {
-                    image: `/images/?query=${ itemParts[ 1 ].trim() }`,
+                    image: `/images/?query=${ itemParts[ 1 ].trim() }`,
                 } );
             } );
 

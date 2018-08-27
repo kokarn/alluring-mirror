@@ -20,5 +20,5 @@ for ( const route in routes ) {
 }
 
 app.listen( process.env.PORT || DEFAULT_PORT, () => {
-    console.log( `Webserver listening on ${ process.env.PORT || DEFAULT_PORT }` );
+    console.log( `Webserver listening on ${ process.env.PORT || DEFAULT_PORT }` );
 } );

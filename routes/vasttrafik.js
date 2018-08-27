@@ -38,11 +38,11 @@ module.exports = function( request, response ){
 
             // for ( const destination of destinations ) {
             for( let i = 0; i < destinations.length; i = i + 1 ){
-                const destination = destinations[ i ];
+                const destination = destinations[ i ];
 
                 // for ( let trip of destination ) {
                 for ( let x = 0; x < destination.length; x = x + 1 ) {
-                    const trip = destination[ x ];
+                    const trip = destination[ x ];
                     const stops = [];
                     const identifierParts = [];
 
@@ -54,13 +54,13 @@ module.exports = function( request, response ){
                     }
 
                     // Skip some trips missing real time updates
-                    if ( !trip.Leg[ 0 ].Origin.rtDate ) {
+                    if ( !trip.Leg[ 0 ].Origin.rtDate ) {
                         continue;
                     }
 
                     // for ( const leg of trip.Leg ) {
                     for ( let y = 0; y < trip.Leg.length; y = y + 1 ) {
-                        const leg = trip.Leg[ y ];
+                        const leg = trip.Leg[ y ];
                         // Filter all walks out
                         if ( leg.type === 'WALK' ) {
                             continue;
@@ -75,18 +75,18 @@ module.exports = function( request, response ){
                     }
 
                     const identifier = identifierParts.join( '-' );
-                    const departure = moment( `${ trip.Leg[ 0 ].Origin.rtDate } ${ trip.Leg[ 0 ].Origin.rtTime }` );
+                    const departure = moment( `${ trip.Leg[ 0 ].Origin.rtDate } ${ trip.Leg[ 0 ].Origin.rtTime }` );
                     const minutesFromNow = departure.diff( moment(), 'minutes' );
 
                     // Skip things leaving now or over an hour from now
-                    if ( minutesFromNow <= 0 || minutesFromNow > 60 ) {
+                    if ( minutesFromNow <= 0 || minutesFromNow > 60 ) {
                         continue;
                     }
 
                     if ( !countdowns[ identifier ] ) {
                         countdowns[ identifier ] = {
                             ttl: [],
-                            destination: trip.Leg[ trip.Leg.length - 1 ].Destination.name.replace( ', Göteborg', '' ),
+                            destination: trip.Leg[ trip.Leg.length - 1 ].Destination.name.replace( ', Göteborg', '' ),
                             route: stops,
                         }
                     }

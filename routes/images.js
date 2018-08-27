@@ -7,7 +7,7 @@ const IMAGE_CACHE_PATH = path.join( __dirname, '..', 'image-cache' );
 
 module.exports = function( request, response ){
     if ( request.params[ '0' ] ) {
-        const imagePath = path.join( IMAGE_CACHE_PATH, `${ request.params[ '0' ] }` );
+        const imagePath = path.join( IMAGE_CACHE_PATH, `${ request.params[ '0' ] }` );
 
         if ( fs.existsSync( imagePath ) ) {
             response.sendFile( imagePath );
@@ -17,11 +17,11 @@ module.exports = function( request, response ){
     }
 
     const search = request.query.query;
-    const imagePath = path.join( IMAGE_CACHE_PATH, `${ search }.jpg` );
+    const imagePath = path.join( IMAGE_CACHE_PATH, `${ search }.jpg` );
     const results = [];
 
-    let entity = request.query.entity || 'tvSeason';
-    let country = request.query.country || 'us';
+    let entity = request.query.entity || 'tvSeason';
+    let country = request.query.country || 'us';
     let shortFilm = false;
 
     if ( entity == 'shortFilm' ) {
@@ -53,8 +53,8 @@ module.exports = function( request, response ){
             const itunesData = JSON.parse( itunesResponse.body );
             let url = 'https://i.imgur.com/fuVi5It.png';
 
-            if ( itunesData.results[ 0 ] ) {
-                url = itunesData.results[ 0 ].artworkUrl100.replace( '100x100', '600x600' );
+            if ( itunesData.results[ 0 ] ) {
+                url = itunesData.results[ 0 ].artworkUrl100.replace( '100x100', '600x600' );
             }
 
             const writeStream = got.stream( url ).pipe( fs.createWriteStream( imagePath ) );

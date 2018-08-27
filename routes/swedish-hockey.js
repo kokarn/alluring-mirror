@@ -77,7 +77,7 @@ const getShortName = function getShortName( team ) {
         case 'Västerviks IK':
             return 'VIK';
         default:
-            console.log( `Undefined team ${ team }` );
+            console.log( `Undefined team ${ team }` );
             return team;
     }
 };
@@ -89,7 +89,7 @@ const getTeamMatches = function getTeamMatches( teamName, image ){
         ical( `${ ICAL_BASE }${ uppercaseName }`, image )
             .then( ( items ) => {
                 for ( const day in items ) {
-                    for ( const item of items[ day ] ) {
+                    for ( const item of items[ day ] ) {
                         const teams = item.title.split( ' - ' );
 
                         if ( getShortName( teams[ 0 ] ) == uppercaseName ) {
@@ -110,11 +110,11 @@ const getTeamMatches = function getTeamMatches( teamName, image ){
 module.exports = function( request, response ){
     const teamMatches = [];
 
-    if ( config[ 'swedish-hockey' ].length === 0 ) {
+    if ( config[ 'swedish-hockey' ].length === 0 ) {
         response.send( {} );
     }
 
-    for ( const team of config[ 'swedish-hockey' ] ) {
+    for ( const team of config[ 'swedish-hockey' ] ) {
         teamMatches.push( getTeamMatches( team.name, team.image ) );
     }
 
@@ -125,10 +125,10 @@ module.exports = function( request, response ){
             for ( const teamDays of matches ) {
                 for ( const date in teamDays ) {
                     if ( !fullList[ date ] ) {
-                        fullList[ date ] = [];
+                        fullList[ date ] = [];
                     }
 
-                    fullList[ date ] = fullList[ date ].concat( teamDays[ date ] );
+                    fullList[ date ] = fullList[ date ].concat( teamDays[ date ] );
                 }
             }
 
