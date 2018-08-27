@@ -31,8 +31,7 @@ module.exports = function( request, response ){
         let imageHTML = files.map( ( filename ) => {
             const fileData = path.parse( filename );
 
-            return `
-            <div>
+            return `<div>
                 <img src="/images/?query=${ fileData.name }" width="150x" height="150px">
                 <span>${ filename }</span>
                 <form method="post" action="." encType="multipart/form-data">
@@ -40,11 +39,8 @@ module.exports = function( request, response ){
                     <input type="hidden" name="filename" value="${ filename }">
                     <input type="submit" value="Update image">
                 </form>
-            </div>
-            `;
+            </div>`;
         } );
-
-        console.log( files );
 
         let responseString = `
             <!DOCTYPE html>
