@@ -30,16 +30,20 @@ module.exports = function( url, image ){
 
             for( const item of allEvents ) {
                 const eventStart = moment( item.startDate.toJSDate() );
+                const newItem = {
+                    title: item.summary,
+                    image,
+                }
 
                 if ( !items[ eventStart.format( 'Y-MM-DD' ) ] ) {
                     items[ eventStart.format( 'Y-MM-DD' ) ] = [];
                 }
 
-                items[ eventStart.format( 'Y-MM-DD' ) ].push( {
-                    title: item.summary,
-                    time: eventStart.format( 'HH:mm' ),
-                    image,
-                } );
+                if ( eventStart.format( 'HH:mm' ) !== '00:00' ) {
+                    newItem.time = eventStart.format( 'HH:mm' );
+                }
+
+                items[ eventStart.format( 'Y-MM-DD' ) ].push( newItem );
             }
 
             return items;
