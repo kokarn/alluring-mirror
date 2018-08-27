@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
         {
-            name: "server",
+            name: "alluring-mirror",
             script: "./server.js",
             cwd: "/home/pi/alluring-mirror/current",
             env: {
