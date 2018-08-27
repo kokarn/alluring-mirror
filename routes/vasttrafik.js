@@ -9,7 +9,10 @@ module.exports = function( request, response ){
             const api = new vasttrafik.TripApi();
             const destinations = [];
 
-            for ( const destinatioID of config.vasttrafik.to ) {
+            // for ( const destinatioID of config.vasttrafik.to ) {
+            for( let i = 0; i < config.vasttrafik.to.length; i = i + 1 ) {
+                const destinatioID = config.vasttrafik.to[ i ];
+
                 destinations.push( api.getTrip( {
                     originId: config.vasttrafik.from,
                     destId: destinatioID,
@@ -21,7 +24,10 @@ module.exports = function( request, response ){
         .then( ( apiResponses ) => {
             const trips = [];
 
-            for ( const apiResponse of apiResponses ) {
+            // for ( const apiResponse of apiResponses ) {
+            for ( let i = 0; i < apiResponses.length; i = i + 1 ) {
+                const apiResponse = apiResponses[ i ];
+
                 trips.push( apiResponse.body.TripList.Trip );
             }
 
@@ -30,8 +36,13 @@ module.exports = function( request, response ){
         .then( ( destinations ) => {
             const countdowns = {};
 
-            for ( const destination of destinations ) {
-                for ( let trip of destination ) {
+            // for ( const destination of destinations ) {
+            for( let i = 0; i < destinations.length; i = i + 1 ){
+                const destination = destinations[ i ];
+
+                // for ( let trip of destination ) {
+                for ( let x = 0; x < destination.length; x = x + 1 ) {
+                    const trip = destination[ x ];
                     const stops = [];
                     const identifierParts = [];
 
@@ -47,7 +58,9 @@ module.exports = function( request, response ){
                         continue;
                     }
 
-                    for ( const leg of trip.Leg ) {
+                    // for ( const leg of trip.Leg ) {
+                    for ( let y = 0; y < trip.Leg.length; y = y + 1 ) {
+                        const leg = trip.Leg[ y ];
                         // Filter all walks out
                         if ( leg.type === 'WALK' ) {
                             continue;
