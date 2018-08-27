@@ -5,4 +5,5 @@ module.exports = {
     vasttrafik: require( './vasttrafik' ),
     config: require( './config' ),
     calendar: require( './calendar' ),
+    imageconf: require( './imageconf' ),
 };

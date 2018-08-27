@@ -2,6 +2,7 @@ require( 'dotenv' ).config();
 
 const express = require( 'express' );
 const cors = require( 'cors' );
+const fileUpload = require( 'express-fileupload' );
 
 const routes = require( './routes' );
 
@@ -10,6 +11,7 @@ const app = express();
 const DEFAULT_PORT = 4000;
 
 app.use( cors() );
+app.use( fileUpload() );
 app.use( express.urlencoded( { extended: true } ) );
 app.use( express.static( 'public' ) );
 
