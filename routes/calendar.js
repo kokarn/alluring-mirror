@@ -17,8 +17,6 @@ module.exports = function( request, response ){
         .then( ( events ) => {
             const fullList = {};
 
-            console.log( events );
-
             for ( const days of events ) {
                 for ( const date in days ) {
                     if ( !fullList[ date ] ) {
