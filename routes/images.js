@@ -51,7 +51,12 @@ module.exports = function( request, response ){
     } )
         .then( ( itunesResponse ) => {
             const itunesData = JSON.parse( itunesResponse.body );
-            const url = itunesData.results[ 0 ].artworkUrl100.replace( '100x100', '600x600' );
+            let url = 'https://i.imgur.com/fuVi5It.png';
+
+            if ( itunesData.results[ 0 ] ) {
+                url = itunesData.results[ 0 ].artworkUrl100.replace( '100x100', '600x600' );
+            }
+
             const writeStream = got.stream( url ).pipe( fs.createWriteStream( imagePath ) );
 
             writeStream.on( 'close', () => {
