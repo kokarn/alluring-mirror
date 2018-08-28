@@ -1,14 +1,14 @@
 module.exports = {
     apps: [
         {
-            name: "alluring-mirror",
-            script: "./server.js",
-            cwd: "/home/pi/alluring-mirror/current",
+            name: 'alluring-mirror',
+            script: './server.js',
+            cwd: '/home/pi/alluring-mirror/current',
             env: {
-                "NODE_ENV": "development",
+                'NODE_ENV': 'development',
             },
             env_production: {
-                "NODE_ENV": "production",
+                'NODE_ENV': 'production',
             },
         },
     ],
