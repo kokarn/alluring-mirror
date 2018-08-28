@@ -6,4 +6,5 @@ module.exports = {
     config: require( './config' ),
     calendar: require( './calendar' ),
     imageconf: require( './imageconf' ),
+    checksum: require( './checksum' ),
 };
