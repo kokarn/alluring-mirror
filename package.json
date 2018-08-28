@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "dev": "nodemon server.js --ignore config.json"
+    "dev": "nodemon server.js --ignore config.json",
+    "deploy": "shipit production deploy"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,8 @@
     "vasttrafik-api": "^1.1.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "shipit-cli": "^4.1.1",
+    "shipit-deploy": "^4.1.1"
   }
 }
