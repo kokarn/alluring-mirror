@@ -10,7 +10,7 @@ module.exports = function( shipit ) {
         production: {
             servers: [
                 {
-                    host: '192.168.0.195',
+                    host: '192.168.0.128',
                     user: 'pi',
                 },
             ],
