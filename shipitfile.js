@@ -20,11 +20,11 @@ module.exports = function( shipit ) {
     } );
 
     shipit.blTask( 'startOrRestart', async () => {
-        await shipit.remote( `cd ${ shipit.config.deployTo } && sudo pm2 startOrRestart --env ${ shipit.environment } current/ecosystem.config.js` )
+        await shipit.remote( `cd ${ shipit.config.deployTo } && pm2 startOrRestart --env ${ shipit.environment } current/ecosystem.config.js` )
     } );
 
     shipit.blTask( 'install', async () => {
-        await shipit.remote( `cd ${ shipit.releasePath }; npm install --production` );
+        await shipit.remote( `cd ${ shipit.releasePath }; npm ci` );
     } );
 
     shipit.blTask( 'assets', async () => {
