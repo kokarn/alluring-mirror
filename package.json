@@ -21,15 +21,17 @@
   },
   "homepage": "https://github.com/kokarn/alluring-mirror#readme",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "cors": "^2.8.4",
     "dirsum": "^0.1.1",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-fileupload": "^0.4.0",
     "feedme": "^1.2.0",
-    "got": "^8.3.2",
+    "got": "^9.2.1",
     "ical-expander": "^2.0.0",
     "moment": "^2.22.2",
+    "tough-cookie": "^2.4.3",
     "vasttrafik-api": "^1.1.1"
   },
   "devDependencies": {

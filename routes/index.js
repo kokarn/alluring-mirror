@@ -7,4 +7,5 @@ module.exports = {
     calendar: require( './calendar' ),
     imageconf: require( './imageconf' ),
     checksum: require( './checksum' ),
+    coop: require( './coop' ),
 };

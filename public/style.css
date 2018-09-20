@@ -146,6 +146,24 @@ i {
     margin: 0 20px;
 }
 
+.coop {
+    font-size: 25px;
+    left: 490px;
+    margin: 0px auto;
+    position: absolute;
+    text-align: center;
+    top: 360px;
+    width: 250px;
+}
+
+.coop svg {
+    height: 35px;
+    width: 35px;
+    position: relative;
+    top: 8px;
+    margin-right: 10px;
+}
+
 .error {
     left: 490px;
     overflow: hidden;
