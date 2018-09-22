@@ -30,7 +30,7 @@ module.exports = function( request, response ){
     }
 
     let query = {
-        term: encodeURIComponent( search ),
+        term: search,
         country,
         entity,
     };
