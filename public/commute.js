@@ -3,11 +3,13 @@
     var display = {
         from: {
             hour: 0,
-            minute: 15
+            minute: 15,
+            day: 1
         },
         to: {
             hour: 23,
-            minute: 30
+            minute: 30,
+            day: 5,
         }
     };
 
@@ -15,6 +17,15 @@
         var now = new Date();
         var currentHour = now.getHours();
         var currentMinute = now.getMinutes();
+        var dayOfWeek = now.getDay();
+
+        if ( dayOfWeek < display.from.day ) {
+            return false;
+        }
+
+        if ( dayOfWeek > display.to.day ) {
+            return false;
+        }
 
         if( currentHour < display.from.hour ){
             return false;
