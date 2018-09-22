@@ -2,12 +2,12 @@
     var trips;
     var display = {
         from: {
-            hour: 0,
+            hour: 7,
             minute: 15,
             day: 1
         },
         to: {
-            hour: 23,
+            hour: 8,
             minute: 30,
             day: 5,
         }
