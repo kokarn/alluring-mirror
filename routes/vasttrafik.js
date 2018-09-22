@@ -31,6 +31,11 @@ module.exports = function( request, response ){
             const countdowns = {};
 
             for ( const destination of destinations ) {
+                // Found no trips to destination
+                if ( !destination ) {
+                    continue;
+                }
+
                 for ( let trip of destination ) {
                     const stops = [];
                     const identifierParts = [];
