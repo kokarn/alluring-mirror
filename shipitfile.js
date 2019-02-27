@@ -1,3 +1,5 @@
+require( 'dotenv' ).config();
+
 module.exports = function( shipit ) {
     // Load shipit-deploy tasks
     require( 'shipit-deploy' )( shipit );
@@ -10,11 +12,11 @@ module.exports = function( shipit ) {
         production: {
             servers: [
                 {
-                    host: '192.168.0.128',
-                    user: 'pi',
+                    host: process.env.DEPLOY_TARGET,
+                    user: process.env.DEPLOY_USER,
                 },
             ],
-            deployTo: '/home/pi/alluring-mirror',
+            deployTo: `~/alluring-mirror`,
             branch: 'master',
         },
     } );
