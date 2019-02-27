@@ -10,6 +10,12 @@
             } );
     }
 
-    setStatus();
-    setInterval( setStatus, 60000 );
+    getConfig()
+        .then( ( configData ) => {
+            if ( configData.coop ) {
+                console.log( 'Coop enabled, starting auto-update' );
+                setStatus();
+                setInterval( setStatus, 60000 );
+            }
+        } );
 })();

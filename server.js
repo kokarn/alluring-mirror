@@ -1,5 +1,7 @@
 require( 'dotenv' ).config();
 
+const path = require( 'path' );
+
 const express = require( 'express' );
 const cors = require( 'cors' );
 const fileUpload = require( 'express-fileupload' );
@@ -18,6 +20,10 @@ app.use( express.static( 'public' ) );
 for ( const route in routes ) {
     app.use( `/${ route }/*`, routes[ route ] );
 }
+
+app.get( '/config.json', ( request, response ) => {
+    response.sendFile( path.join( __dirname, 'config.json' ) );
+} );
 
 app.listen( process.env.PORT || DEFAULT_PORT, () => {
     console.log( `Webserver listening on ${ process.env.PORT || DEFAULT_PORT }` );
