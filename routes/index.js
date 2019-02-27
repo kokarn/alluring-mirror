@@ -8,4 +8,5 @@ module.exports = {
     imageconf: require( './imageconf' ),
     checksum: require( './checksum' ),
     coop: require( './coop' ),
+    weather: require( './weather' ),
 };
