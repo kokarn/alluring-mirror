@@ -2,7 +2,7 @@ const IcalExpander = require( 'ical-expander' );
 const moment = require( 'moment' );
 const got = require( 'got' );
 
-module.exports = function( url, image ){
+module.exports = function( url, image, time = true ){
     return got( url )
         .then( ( calendarResponse ) => {
             const icalExpander = new IcalExpander( {
@@ -39,7 +39,7 @@ module.exports = function( url, image ){
                     items[ eventStart.format( 'Y-MM-DD' ) ] = [];
                 }
 
-                if ( eventStart.format( 'HH:mm' ) !== '00:00' ) {
+                if ( time && eventStart.format( 'HH:mm' ) !== '00:00' ) {
                     newItem.time = eventStart.format( 'HH:mm' );
                 }
 
