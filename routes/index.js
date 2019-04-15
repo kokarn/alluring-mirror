@@ -9,4 +9,5 @@ module.exports = {
     checksum: require( './checksum' ),
     coop: require( './coop' ),
     weather: require( './weather' ),
+    sonarr: require( './sonarr' ),
 };

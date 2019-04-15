@@ -4,7 +4,7 @@
         var promises = [];
 
         promises.push( $.ajax({
-            url: 'myepisodes/'
+            url: 'sonarr/'
         }));
 
         promises.push( $.ajax({
