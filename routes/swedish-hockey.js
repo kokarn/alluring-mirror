@@ -1,6 +1,6 @@
 const ical = require( '../modules/ical' );
 
-const config = require( '../config.json' );
+const config = require( '../data/config.json' );
 
 const ICAL_BASE = 'https://hockey-mchockeyface.herokuapp.com/calendar?team=';
 

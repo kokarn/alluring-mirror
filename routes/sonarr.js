@@ -1,6 +1,6 @@
 const ical = require( '../modules/ical' );
 
-const config = require( '../config.json' );
+const config = require( '../data/config.json' );
 
 module.exports = function( request, response ){
     const calendarEvents = [];

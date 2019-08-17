@@ -1,7 +1,7 @@
 const vasttrafik = require( 'vasttrafik-api' );
 const moment = require( 'moment' );
 
-const config = require( '../config.json' );
+const config = require( '../data/config.json' );
 
 module.exports = function( request, response ){
     vasttrafik.authorize( process.env.VASTTRAFIK_KEY, process.env.VASTTRAFIK_SECRET )
