@@ -18,6 +18,7 @@
         Promise.all( promises )
             .then( function( values ){
                 console.log( 'got all promises ' );
+                $( '.js-error' ).empty();
                 callback( values );
             } )
             .catch( function( promiseError ){
