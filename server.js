@@ -20,7 +20,7 @@ for ( const route in routes ) {
 }
 
 app.get( '/config.json', ( request, response ) => {
-    response.sendFile( path.join( __dirname, 'config.json' ) );
+    response.sendFile( path.join( __dirname, 'data', 'config.json' ) );
 } );
 
 app.listen( process.env.PORT || DEFAULT_PORT, () => {
