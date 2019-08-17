@@ -4,6 +4,14 @@ const moment = require( 'moment' );
 const config = require( '../data/config.json' );
 
 module.exports = function( request, response ){
+    if ( !config.vasttrafik ) {
+        return response.send( [] );
+    }
+
+    if ( !config.vasttrafik.to ) {
+        return response.send( [] )
+    }
+
     vasttrafik.authorize( process.env.VASTTRAFIK_KEY, process.env.VASTTRAFIK_SECRET )
         .then( () => {
             const api = new vasttrafik.TripApi();

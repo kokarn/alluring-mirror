@@ -6,7 +6,7 @@ module.exports = function( request, response ){
     const calendarEvents = [];
 
     if ( config.calendar.length === 0 ) {
-        response.send( {} );
+        return response.send( {} );
     }
 
     for ( const calendar of config.calendar ) {
