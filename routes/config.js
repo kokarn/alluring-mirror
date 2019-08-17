@@ -2,7 +2,7 @@ const fs = require( 'fs' );
 const path = require( 'path' );
 
 module.exports = function( request, response ){
-    const configPath = path.join( __dirname, '..', 'config.json' );
+    const configPath = path.join( __dirname, '..', 'data', 'config.json' );
     let displayError = false;
 
     if ( request.method === 'POST' ) {

@@ -3,7 +3,7 @@ const path = require( 'path' );
 
 const got = require( 'got' );
 
-const IMAGE_CACHE_PATH = path.join( __dirname, '..', 'image-cache' );
+const IMAGE_CACHE_PATH = path.join( __dirname, '..', 'data', 'image-cache' );
 
 module.exports = function( request, response ){
     if ( request.params[ '0' ] ) {

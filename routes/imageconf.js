@@ -2,7 +2,7 @@ const fs = require( 'fs' );
 const path = require( 'path' );
 
 module.exports = function( request, response ){
-    const imagesPath = path.join( __dirname, '..', 'image-cache' );
+    const imagesPath = path.join( __dirname, '..', 'data', 'image-cache' );
 
     if ( request.method === 'POST' ) {
         try {
