@@ -4,6 +4,10 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
+RUN apk add --no-cache tzdata
+
+ENV TZ Europe/Stockholm
+
 RUN npm ci --only=production
 
 COPY . .
