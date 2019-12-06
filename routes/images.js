@@ -3,6 +3,8 @@ const path = require( 'path' );
 
 const got = require( 'got' );
 
+const githubImage = require( '../modules/github-image' );
+
 const IMAGE_CACHE_PATH = path.join( __dirname, '..', 'data', 'image-cache' );
 
 module.exports = function( request, response ){
@@ -49,12 +51,22 @@ module.exports = function( request, response ){
     got( url, {
         query,
     } )
-        .then( ( itunesResponse ) => {
+        .then( async ( itunesResponse ) => {
             const itunesData = JSON.parse( itunesResponse.body );
             let url = 'https://i.imgur.com/fuVi5It.png';
 
             if ( itunesData.results[ 0 ] ) {
                 url = itunesData.results[ 0 ].artworkUrl100.replace( '100x100', '600x600' );
+            } else {
+                try {
+                    const imageUrl = await githubImage( search );
+                    
+                    if ( imageUrl ) {
+                        url = imageUrl;
+                    }
+                } catch ( githubError ) {
+                    console.error( githubError );
+                }
             }
 
             const writeStream = got.stream( url ).pipe( fs.createWriteStream( imagePath ) );
