@@ -20,7 +20,6 @@ module.exports = function( request, response ){
 
     const search = request.query.query;
     const imagePath = path.join( IMAGE_CACHE_PATH, `${ search }.jpg` );
-    const results = [];
 
     let entity = request.query.entity || 'tvSeason';
     let country = request.query.country || 'us';
