@@ -24,7 +24,7 @@
     "cors": "^2.8.5",
     "dirsum": "^0.1.1",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.5",
+    "express-fileupload": "^1.1.9",
     "feedme": "^1.2.0",
     "got": "^9.6.0",
     "ical-expander": "^2.0.0",
