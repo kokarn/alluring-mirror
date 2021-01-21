@@ -4,6 +4,7 @@ const path = require( 'path' );
 const got = require( 'got' );
 
 const githubImage = require( '../modules/github-image' );
+const fanartTvImage = require( '../modules/fanart-image' );
 
 const IMAGE_CACHE_PATH = path.join( __dirname, '..', 'data', 'image-cache' );
 
@@ -35,6 +36,7 @@ module.exports = function( request, response ){
         country,
         entity,
     };
+
     let url = 'http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?';
 
     if ( shortFilm ) {
@@ -52,20 +54,39 @@ module.exports = function( request, response ){
     } )
         .then( async ( itunesResponse ) => {
             const itunesData = JSON.parse( itunesResponse.body );
-            let url = 'https://i.imgur.com/fuVi5It.png';
+            const fallbackUrl = 'https://i.imgur.com/fuVi5It.png';
+            let url = false;
 
             if ( itunesData.results[ 0 ] ) {
                 url = itunesData.results[ 0 ].artworkUrl100.replace( '100x100', '600x600' );
-            } else {
+            }
+
+            if(!url){
                 try {
                     const imageUrl = await githubImage( search );
-                    
+
                     if ( imageUrl ) {
                         url = imageUrl;
                     }
                 } catch ( githubError ) {
                     console.error( githubError );
                 }
+            }
+
+            if(!url){
+                try {
+                    const imageUrl = await fanartTvImage( search );
+
+                    if ( imageUrl ) {
+                        url = imageUrl;
+                    }
+                } catch ( githubError ) {
+                    console.error( githubError );
+                }
+            }
+
+            if(!url){
+                url = fallbackUrl;
             }
 
             const writeStream = got.stream( url ).pipe( fs.createWriteStream( imagePath ) );
