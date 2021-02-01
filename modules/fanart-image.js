@@ -1,8 +1,8 @@
 const got = require( 'got' );
 
 module.exports = async (title) => {
-    const response = await got('https://sheetdb.io/api/v1/kydv66df0fplr');
-    const mappingList = JSON.parse(response.body);
+    const apiResponse = await got('https://sheetdb.io/api/v1/kydv66df0fplr');
+    const mappingList = JSON.parse(apiResponse.body);
     const url = `http://webservice.fanart.tv/v3/tv/${ mappingList.find(mappingItem => mappingItem.Name === title )['TVDB ID'] }?api_key=${process.env.FANART_TV_API}`;
     let data;
 
@@ -29,6 +29,10 @@ module.exports = async (title) => {
 
         return 0;
     });
+
+    if(!sortedBackgrounds[0]){
+        return false;
+    }
 
     return `https://images.weserv.nl/?url=${encodeURIComponent(sortedBackgrounds[0].url)}&w=600&h=600&fit=contain&cbg=black`;
 };

@@ -75,13 +75,14 @@ module.exports = function( request, response ){
 
             if(!url){
                 try {
+                    console.log(`Loading ${search} from fanart`);
                     const imageUrl = await fanartTvImage( search );
 
                     if ( imageUrl ) {
                         url = imageUrl;
                     }
-                } catch ( githubError ) {
-                    console.error( githubError );
+                } catch ( fanartError ) {
+                    console.error( fanartError );
                 }
             }
 

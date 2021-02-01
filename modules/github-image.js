@@ -8,9 +8,9 @@ module.exports = async (title) => {
         } );
     } catch ( requestError ) {
         console.log( `Image ${ url } doesn't exist` );
-        
+
         return false;
     }
-    
+
     return url;
 };
