@@ -10,6 +10,8 @@ const app = express();
 
 const DEFAULT_PORT = 4000;
 
+console.log(process.env);
+
 app.use( cors() );
 app.use( fileUpload() );
 app.use( express.urlencoded( { extended: true } ) );
