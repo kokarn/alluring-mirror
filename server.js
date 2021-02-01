@@ -10,7 +10,17 @@ const app = express();
 
 const DEFAULT_PORT = 4000;
 
+const IMAGE_CACHE_PATH = path.join( __dirname, '..', 'data', 'image-cache' );
+
 console.log(process.env);
+
+try {
+    fs.mkdirSync(IMAGE_CACHE_PATH);
+} catch (folderCreateError){
+    if(folderCreateError.code !== 'EEXIST'){
+        console.error(folderCreateError);
+    }
+}
 
 app.use( cors() );
 app.use( fileUpload() );
