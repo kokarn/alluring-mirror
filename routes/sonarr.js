@@ -1,9 +1,9 @@
 const ical = require( '../modules/ical' );
 
-const config = require( '../data/config.json' );
+
 
 module.exports = function( request, response ){
-    const calendarEvents = [];
+    const config = require( '../data/config.json' );
 
     if ( !config.sonarr ) {
         response.send( {} );
