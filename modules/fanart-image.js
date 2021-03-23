@@ -3,7 +3,15 @@ const got = require( 'got' );
 module.exports = async (title) => {
     const apiResponse = await got('https://sheetdb.io/api/v1/kydv66df0fplr');
     const mappingList = JSON.parse(apiResponse.body);
-    const url = `http://webservice.fanart.tv/v3/tv/${ mappingList.find(mappingItem => mappingItem.Name === title )['TVDB ID'] }?api_key=${process.env.FANART_TV_API}`;
+    const mappedSeries = mappingList.find(mappingItem => mappingItem.Name === title );
+
+    if(!mappedSeries){
+        console.log(`Found no series mapped to ${title} in the API`);
+
+        return false;
+    }
+
+    const url = `http://webservice.fanart.tv/v3/tv/${ mappedSeries['TVDB ID'] }?api_key=${process.env.FANART_TV_API}`;
     let data;
 
     try {
