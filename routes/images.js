@@ -87,7 +87,7 @@ module.exports = function( request, response ){
             }
 
             if(!url){
-                url = fallbackUrl;
+                return response.redirect(fallbackUrl);
             }
 
             const writeStream = got.stream( url ).pipe( fs.createWriteStream( imagePath ) );
