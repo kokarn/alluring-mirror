@@ -11,7 +11,7 @@ const app = express();
 
 const DEFAULT_PORT = 4000;
 
-const IMAGE_CACHE_PATH = path.join( __dirname, '..', 'data', 'image-cache' );
+const IMAGE_CACHE_PATH = path.join( __dirname, '.', 'data', 'image-cache' );
 
 console.log(process.env);
 
