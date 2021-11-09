@@ -22,6 +22,12 @@ module.exports = function( request, response ){
     const search = request.query.query;
     const imagePath = path.join( IMAGE_CACHE_PATH, `${ search }.jpg` );
 
+    if ( fs.existsSync( imagePath ) ) {
+        response.sendFile( imagePath );
+
+        return true;
+    }
+
     let entity = request.query.entity || 'tvSeason';
     let country = request.query.country || 'us';
     let shortFilm = false;
@@ -37,17 +43,11 @@ module.exports = function( request, response ){
         entity,
     };
 
-    let url = 'http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?';
-
     if ( shortFilm ) {
         query.attribute = 'shortFilmTerm';
     }
 
-    if ( fs.existsSync( imagePath ) ) {
-        response.sendFile( imagePath );
-
-        return true;
-    }
+    let url = 'http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?';
 
     got( url, {
         query,
