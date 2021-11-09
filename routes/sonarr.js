@@ -13,6 +13,8 @@ module.exports = function( request, response ){
         response.send( {} );
     }
 
+    console.log(`Loading Sonarr from ${config.sonarr}`);
+
     ical( config.sonarr, 'none.jpg', false )
         .then( ( events ) => {
             for ( const date in events ) {
