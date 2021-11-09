@@ -63,5 +63,5 @@ module.exports = async (title) => {
         return false;
     }
 
-    return `https://images.weserv.nl/?url=${encodeURIComponent(sortedImages[0].url)}&w=600&h=600&fit=contain&cbg=black`;
+    return `https://images.weserv.nl/?url=${encodeURIComponent(sortedImages[0].url)}&w=600&h=600&fit=cover&cbg=black`;
 };
