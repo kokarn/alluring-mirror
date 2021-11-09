@@ -24,23 +24,44 @@ module.exports = async (title) => {
         return false;
     }
 
-    const sortedBackgrounds = data.showbackground.sort((a, b) => {
-        const aLikes = Number(a.likes);
-        const bLikes = Number(b.likes);
-        if(aLikes < bLikes){
-            return 1;
-        }
+    let sortedImages;
 
-        if(aLikes > bLikes){
-            return -1;
-        }
+    if(data.tvthumb){
+        sortedImages = data.tvthumb.sort((a, b) => {
+            const aLikes = Number(a.likes);
+            const bLikes = Number(b.likes);
+            if(aLikes < bLikes){
+                return 1;
+            }
 
-        return 0;
-    });
+            if(aLikes > bLikes){
+                return -1;
+            }
 
-    if(!sortedBackgrounds[0]){
+            return 0;
+        });
+    }
+
+    if(!sortedImages && data.showbackground){
+        sortedImages = data.showbackground.sort((a, b) => {
+            const aLikes = Number(a.likes);
+            const bLikes = Number(b.likes);
+            if(aLikes < bLikes){
+                return 1;
+            }
+
+            if(aLikes > bLikes){
+                return -1;
+            }
+
+            return 0;
+        });
+    }
+
+
+    if(!sortedImages[0]){
         return false;
     }
 
-    return `https://images.weserv.nl/?url=${encodeURIComponent(sortedBackgrounds[0].url)}&w=600&h=600&fit=contain&cbg=black`;
+    return `https://images.weserv.nl/?url=${encodeURIComponent(sortedImages[0].url)}&w=600&h=600&fit=contain&cbg=black`;
 };
