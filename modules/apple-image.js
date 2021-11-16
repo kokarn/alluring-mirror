@@ -4,6 +4,9 @@ const got = require('got');
 module.exports = async (title) => {
     // https://bendodson.com/projects/apple-tv-movies-artwork-finder/
 
+    // Strip "(2021)" etc from titles
+    title = title.replace(/(\(\d+\))/, '').trim();
+
     let url = `https://uts-api.itunes.apple.com/uts/v2/search/incremental?sf=143441&locale=en-GB&caller=wta&utsk=c90b62a3458fde7%3A%3A%3A%3A%3A%3Ab659e02d87afc13&v=34&pfm=desktop&q=${title.toLowerCase().replace(/\s/g, '+')}`;
 
     const response = await got( url );
