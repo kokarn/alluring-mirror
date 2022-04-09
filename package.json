@@ -28,7 +28,7 @@
     "feedme": "^1.2.0",
     "got": "^9.6.0",
     "ical-expander": "^2.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "tough-cookie": "^3.0.1",
     "vasttrafik-api": "^1.1.1"
   },
