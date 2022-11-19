@@ -6,11 +6,11 @@ module.exports = function( request, response ){
     const config = require( '../data/config.json' );
 
     if ( !config.sonarr ) {
-        response.send( {} );
+        return response.send( {} );
     }
 
     if ( config.sonarr.length === 0 ) {
-        response.send( {} );
+        return response.send( {} );
     }
 
     console.log(`Loading Sonarr from ${config.sonarr}`);
