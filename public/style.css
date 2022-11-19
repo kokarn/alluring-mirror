@@ -271,14 +271,13 @@ i {
     position: absolute;
     right: 0;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    flex-flow: wrap;
 }
 
 .item-wrapper .footer .title {
-    display: inline-block;
-    margin: 0 5px;
-}
-
-.item-wrapper .footer time {
-    display: inline-block;
-    margin: 0 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
