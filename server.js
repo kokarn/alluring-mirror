@@ -13,8 +13,6 @@ const DEFAULT_PORT = 4000;
 
 const IMAGE_CACHE_PATH = path.join( __dirname, '.', 'data', 'image-cache' );
 
-console.log(process.env);
-
 try {
     fs.mkdirSync(IMAGE_CACHE_PATH);
 } catch (folderCreateError){
