@@ -26,7 +26,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.5",
     "feedme": "^1.2.0",
-    "got": "^9.6.0",
+    "got": "^12.5.3",
     "ical-expander": "^2.0.0",
     "moment": "^2.24.0",
     "tough-cookie": "^3.0.1",
