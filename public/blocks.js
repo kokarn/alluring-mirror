@@ -1,5 +1,6 @@
 (function(){
     var printed = 0;
+    var max_printed = 5;
     function loadDays( callback ){
         var promises = [];
 
@@ -114,7 +115,7 @@
             return 0;
         } );
 
-        for( var i = 0; i < items.length && printed < 10; i = i + 1 ){
+        for( var i = 0; i < items.length && printed < max_printed; i = i + 1 ){
             $blockElement = printBlock( $outerWrapper, items[ i ] );
 
             if( i === 0 ){
