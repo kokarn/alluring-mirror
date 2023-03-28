@@ -9,7 +9,7 @@ module.exports = function( url, image, time = true ){
                 ics: calendarResponse.body,
                 maxIterations: 1000,
             } );
-            const start = new Date( `${ moment().format( 'Y-MM-DD' ) }T00:00:00.000Z` );
+            const start = new Date();
             const end = new Date( `${ moment().add( 40, 'days' ).format( 'Y-MM-DD' ) }T00:00:00.000Z` );
             const items = {};
 
