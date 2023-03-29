@@ -273,13 +273,18 @@ i {
     text-align: center;
     display: flex;
     justify-content: center;
-    column-gap: 10px;
+    /*
+        needs chrome 84
+        column-gap: 10px;
+    */
     flex-flow: wrap;
 }
 
 .item-wrapper .footer .title {
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 iframe {
