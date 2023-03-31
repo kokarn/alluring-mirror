@@ -279,8 +279,10 @@ i {
     text-overflow: ellipsis;
 }
 
-iframe {
+iframe,
+.iframe-cursor-hider {
     border: 0;
+    cursor: none;
     position: absolute;
     top: 500px;
     left: 0;
