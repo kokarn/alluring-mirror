@@ -44,4 +44,4 @@ jobs:
 
       -
         name: Update container
-        run: curl -k -X POST https://cloud.kokarn.com:9443/api/webhooks/2143aba7-4ba4-4a3a-bc6f-ca374e445a1a
+        run: curl -k -X POST https://cloud.kokarn.com:9443/api/webhooks/42fd7bd4-631e-4049-9934-89086f00f9d7
