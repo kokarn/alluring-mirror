@@ -17,7 +17,7 @@ module.exports = async function(request, response) {
             console.log(requestError);
         }
 
-        environmentContainers.map((container) => {
+        environmentContainers?.map((container) => {
             if (container.State === 'running') {
                 up = up + 1;
             } else {
