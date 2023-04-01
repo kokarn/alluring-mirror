@@ -4,37 +4,27 @@ module.exports = async function(request, response) {
     if (!process.env.PORTAINER_URL || !process.env.PORTAINER_ACCESS_TOKEN) {
         return response.send('Portainer not configured');
     }
-    let containers;
     let up = 0;
     let down = 0;
 
-    try {
-        containers = await portainerClient('/api/endpoints/2/docker/containers/json', 'get');
-    } catch (requestError) {
-        console.log(requestError);
-    }
+    let environments = await portainerClient('/api/endpoints?start=1&limit=50&provisioned=true&edgeDevice=false&tagsPartialMatch=true', 'get');
 
-    containers.map((container) => {
-        if (container.State === 'running') {
-            up = up + 1;
-        } else {
-            down = down + 1;
+    for(const environment of environments) {
+        let environmentContainers;
+        try {
+            environmentContainers = await portainerClient(`/api/endpoints/${environment.Id}/docker/containers/json`, 'get');
+        } catch (requestError) {
+            console.log(requestError);
         }
-    });
 
-    try {
-        containers = await portainerClient('/api/endpoints/3/docker/containers/json', 'get');
-    } catch (requestError) {
-        console.log(requestError);
+        environmentContainers.map((container) => {
+            if (container.State === 'running') {
+                up = up + 1;
+            } else {
+                down = down + 1;
+            }
+        });
     }
-
-    containers.map((container) => {
-        if (container.State === 'running') {
-            up = up + 1;
-        } else {
-            down = down + 1;
-        }
-    });
 
     response.send({
         up: up,
