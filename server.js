@@ -35,5 +35,5 @@ app.get( '/config.json', ( request, response ) => {
 } );
 
 app.listen( process.env.PORT || DEFAULT_PORT, () => {
-    console.log( `Webserver listening on ${ process.env.PORT || DEFAULT_PORT }` );
+    console.log( `Webserver listening on http://localhost:${ process.env.PORT || DEFAULT_PORT }` );
 } );
