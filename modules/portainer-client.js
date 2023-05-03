@@ -15,7 +15,15 @@ const portainerClient = async (apiPath, requestMethod) => {
 
     // console.log(requestParams);
 
-    const response = await fetch(`${process.env.PORTAINER_URL}${apiPath}`, requestParams);
+    let response;
+
+    try {
+        response = await fetch(`${process.env.PORTAINER_URL}${apiPath}`, requestParams);
+    } catch (requestError) {
+        console.log(requestError);
+
+        return [];
+    }
 
     return await response.json();
 };
