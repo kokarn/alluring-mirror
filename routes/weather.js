@@ -5,6 +5,7 @@ const WEATHER_ENDPOINT = 'https://api.openweathermap.org/data/2.5';
 
 const WEATHER_LOCATION = {
     gothenburg: '2711537',
+    brastad: '2719670',
 };
 
 const WEATHER_MAP = {
