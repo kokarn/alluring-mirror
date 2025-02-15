@@ -42,6 +42,6 @@ jobs:
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
 
-      -
-        name: Update container
-        run: curl -k -X POST https://home.kokarn.com:9443/api/stacks/webhooks/0fc28bfa-8e18-4949-ac02-fe4a104f30f3
+    #   -
+    #     name: Update container
+    #     run: curl -k -X POST https://home.kokarn.com:9443/api/stacks/webhooks/0fc28bfa-8e18-4949-ac02-fe4a104f30f3
