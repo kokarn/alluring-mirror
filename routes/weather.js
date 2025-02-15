@@ -1,6 +1,8 @@
 const got = require( 'got' );
 const moment = require( 'moment' );
 
+const config = require( '../data/config.json' );
+
 const WEATHER_ENDPOINT = 'https://api.openweathermap.org/data/2.5';
 
 const WEATHER_LOCATION = {
@@ -91,7 +93,7 @@ module.exports = function( request, response ){
         json: true,
         query: {
             appid: process.env.OPEN_WEATHER_MAP,
-            id: WEATHER_LOCATION[ 'gothenburg' ],
+            id: WEATHER_LOCATION[ config.weather ],
             units: 'metric',
         },
     } )
@@ -107,7 +109,7 @@ module.exports = function( request, response ){
             json: true,
             query: {
                 appid: process.env.OPEN_WEATHER_MAP,
-                id: WEATHER_LOCATION[ 'gothenburg' ],
+                id: WEATHER_LOCATION[ config.weather ],
                 units: 'metric',
             },
         } );
