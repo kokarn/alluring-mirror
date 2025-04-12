@@ -100,7 +100,8 @@ module.exports = function( request, response ){
     .then( ( weatherReturnData ) => {
         returnData.now = {
             code: getWeatherCode( weatherReturnData.body ),
-            temperature: weatherReturnData.body.main.temp,
+            // temperature: weatherReturnData.body.main.temp,
+            temperature: weatherReturnData.body.main.feels_like,
             high: weatherReturnData.body.main.temp_max,
             low: weatherReturnData.body.main.temp_min,
         };
