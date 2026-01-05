@@ -1,11 +1,11 @@
-const ical = require( '../modules/ical' );
+const ical = require('../modules/ical');
 
-const config = require( '../data/config.json' );
+const config = require('../data/config.json');
 
-const ICAL_BASE = 'https://hockey-mchockeyface.herokuapp.com/calendar?team=';
+const ICAL_BASE = 'https://hockey-mchockeyface.rymdvarel.se/calendar?team=';
 
-const getShortName = function getShortName( team ) {
-    switch ( team ) {
+const getShortName = function getShortName(team) {
+    switch (team) {
         case 'AIK':
             return 'AIK';
         case 'Almtuna':
@@ -77,61 +77,61 @@ const getShortName = function getShortName( team ) {
         case 'Västerviks IK':
             return 'VIK';
         default:
-            console.log( `Undefined team ${ team }` );
+            console.log(`Undefined team ${team}`);
             return team;
     }
 };
 
-const getTeamMatches = function getTeamMatches( teamName, image ){
+const getTeamMatches = function getTeamMatches(teamName, image) {
     const uppercaseName = teamName.toUpperCase();
 
-    return new Promise( ( resolve, reject ) => {
-        ical( `${ ICAL_BASE }${ uppercaseName }`, image )
-            .then( ( items ) => {
-                for ( const day in items ) {
-                    for ( const item of items[ day ] ) {
-                        const teams = item.title.split( ' - ' );
+    return new Promise((resolve, reject) => {
+        ical(`${ICAL_BASE}${uppercaseName}`, image)
+            .then((items) => {
+                for (const day in items) {
+                    for (const item of items[day]) {
+                        const teams = item.title.split(' - ');
 
-                        if ( getShortName( teams[ 0 ] ) == uppercaseName ) {
-                            title = getShortName( teams[ 1 ] );
+                        if (getShortName(teams[0]) == uppercaseName) {
+                            title = getShortName(teams[1]);
                         } else {
-                            title = getShortName( teams[ 0 ] );
+                            title = getShortName(teams[0]);
                         }
 
                         item.title = title;
                     }
                 }
 
-                resolve( items );
-            } );
-    } );
+                resolve(items);
+            });
+    });
 }
 
-module.exports = function( request, response ){
+module.exports = function (request, response) {
     const teamMatches = [];
 
-    if ( config[ 'swedish-hockey' ].length === 0 ) {
-        response.send( {} );
+    if (config['swedish-hockey'].length === 0) {
+        response.send({});
     }
 
-    for ( const team of config[ 'swedish-hockey' ] ) {
-        teamMatches.push( getTeamMatches( team.name, team.image ) );
+    for (const team of config['swedish-hockey']) {
+        teamMatches.push(getTeamMatches(team.name, team.image));
     }
 
-    Promise.all( teamMatches )
-        .then( ( matches ) => {
+    Promise.all(teamMatches)
+        .then((matches) => {
             const fullList = {};
 
-            for ( const teamDays of matches ) {
-                for ( const date in teamDays ) {
-                    if ( !fullList[ date ] ) {
-                        fullList[ date ] = [];
+            for (const teamDays of matches) {
+                for (const date in teamDays) {
+                    if (!fullList[date]) {
+                        fullList[date] = [];
                     }
 
-                    fullList[ date ] = fullList[ date ].concat( teamDays[ date ] );
+                    fullList[date] = fullList[date].concat(teamDays[date]);
                 }
             }
 
-            response.send( fullList );
-        } )
+            response.send(fullList);
+        })
 };
