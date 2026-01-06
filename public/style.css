@@ -459,3 +459,59 @@ iframe,
     width: 800px;
     height: 550px;
 }
+
+/* Weather Warnings */
+.weather-warnings {
+    margin-top: 20px;
+    text-align: left;
+    max-width: 400px;
+}
+
+.weather-warning {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1.4;
+    border-left: 5px solid transparent;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+.weather-warning small {
+    display: block;
+    font-size: 13px;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+
+.weather-warning.level-yellow {
+    border-left-color: #ffd700;
+    color: #ffd700;
+}
+
+.weather-warning.level-orange {
+    border-left-color: #ff8c00;
+    color: #ff8c00;
+}
+
+.weather-warning.level-red {
+    border-left-color: #ff0000;
+    color: #ff0000;
+    font-weight: bold;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
