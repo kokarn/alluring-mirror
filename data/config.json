@@ -14,5 +14,11 @@
         }
     ],
     "coop": false,
-    "electricity_region": "SE3"
+    "electricity": {
+        "region": "SE3",
+        "markup": 2,
+        "grid_fee": 18.5,
+        "energy_tax": 43.9,
+        "include_vat": true
+    }
 }
