@@ -11,4 +11,5 @@ module.exports = {
     weather: require('./weather'),
     sonarr: require('./sonarr'),
     portainer: require('./portainer'),
+    electricity: require('./electricity'),
 };

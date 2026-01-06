@@ -5,8 +5,14 @@
             "image": "https://i.imgur.com/pHhvGBE.png"
         }
     ],
-    "weather": "gothenburg",
+    "weather": "brastad",
     "vasttrafik": {},
-    "calendar": [],
-    "coop": false
+    "calendar": [
+        {
+            "source": "https://calendar.google.com/calendar/ical/498f3d210b76c94da523d3fed1c59491079a4826b69e284e695238f8a0e687a3%40group.calendar.google.com/public/basic.ics",
+            "image": "https://i.pinimg.com/originals/f4/45/c4/f445c4b7eec721298d98777ad0ba31d6.png"
+        }
+    ],
+    "coop": false,
+    "electricity_region": "SE3"
 }

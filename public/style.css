@@ -2,9 +2,9 @@
     font-family: 'weather';
     src: url('artill_clean_icons-webfont.eot');
     src: url('artill_clean_icons-webfont.eot?#iefix') format('embedded-opentype'),
-         url('artill_clean_icons-webfont.woff') format('woff'),
-         url('artill_clean_icons-webfont.ttf') format('truetype'),
-         url('artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg') format('svg');
+        url('artill_clean_icons-webfont.woff') format('woff'),
+        url('artill_clean_icons-webfont.ttf') format('truetype'),
+        url('artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -87,54 +87,197 @@ i {
     width: 20%;
 }
 
-.icon-tornado:before { content: ":"; }
-.icon-tropical-storm:before { content: "p"; }
-.icon-hurricane:before { content: "S"; }
-.icon-severe-thunderstorms:before { content: "Q"; }
-.icon-thunderstorms:before { content: "S"; }
-.icon-mixed-rain-and-snow:before { content: "W"; }
-.icon-mixed-rain-and-sleet:before { content: "W"; }
-.icon-mixed-snow-and-sleet:before { content: "W"; }
-.icon-freezing-drizzle:before { content: "W"; }
-.icon-drizzle:before { content: "I"; }
-.icon-freezing-rain:before { content: "W"; }
-.icon-showers:before { content: "I"; }
-.icon-showers:before { content: "I"; }
-.icon-snow-flurries:before { content: "I"; }
-.icon-light-snow-showers:before { content: "I"; }
-.icon-blowing-snow:before { content: "W"; }
-.icon-snow:before { content: "I"; }
-.icon-hail:before { content: "W"; }
-.icon-sleet:before { content: "U"; }
-.icon-dust:before { content: "Z"; }
-.icon-foggy:before { content: "Z"; }
-.icon-haze:before { content: "Z"; }
-.icon-smoky:before { content: "Z"; }
-.icon-blustery:before { content: "Z"; }
-.icon-windy:before { content: "E"; }
-.icon-cold:before { content: "E"; }
-.icon-cloudy:before { content: "3"; }
-.icon-mostly-cloudy-night:before { content: "a"; }
-.icon-mostly-cloudy-day:before { content: "A"; }
-.icon-partly-cloudy-night:before { content: "a"; }
-.icon-partly-cloudy-day:before { content: "A"; }
-.icon-clear-night:before { content: "6"; }
-.icon-sunny:before { content: "1"; }
-.icon-fair-night:before { content: "6"; }
-.icon-fair-day:before { content: "1"; }
-.icon-mixed-rain-and-hail:before { content: "W"; }
-.icon-hot:before { content: "1"; }
-.icon-isolated-thunderstorms:before { content: "S"; }
-.icon-scattered-thunderstorms:before { content: "S"; }
-.icon-scattered-thunderstorms:before { content: "S"; }
-.icon-scattered-showers:before { content: "M"; }
-.icon-heavy-snow:before { content: "W"; }
-.icon-scattered-snow-showers:before { content: "I"; }
-.icon-heavy-snow:before { content: "W"; }
-.icon-partly-cloudy:before { content: "a"; }
-.icon-thundershowers:before { content: "S"; }
-.icon-snow-showers:before { content: "U"; }
-.icon-isolated-thundershowers:before { content: "S"; }
+.icon-tornado:before {
+    content: ":";
+}
+
+.icon-tropical-storm:before {
+    content: "p";
+}
+
+.icon-hurricane:before {
+    content: "S";
+}
+
+.icon-severe-thunderstorms:before {
+    content: "Q";
+}
+
+.icon-thunderstorms:before {
+    content: "S";
+}
+
+.icon-mixed-rain-and-snow:before {
+    content: "W";
+}
+
+.icon-mixed-rain-and-sleet:before {
+    content: "W";
+}
+
+.icon-mixed-snow-and-sleet:before {
+    content: "W";
+}
+
+.icon-freezing-drizzle:before {
+    content: "W";
+}
+
+.icon-drizzle:before {
+    content: "I";
+}
+
+.icon-freezing-rain:before {
+    content: "W";
+}
+
+.icon-showers:before {
+    content: "I";
+}
+
+.icon-showers:before {
+    content: "I";
+}
+
+.icon-snow-flurries:before {
+    content: "I";
+}
+
+.icon-light-snow-showers:before {
+    content: "I";
+}
+
+.icon-blowing-snow:before {
+    content: "W";
+}
+
+.icon-snow:before {
+    content: "I";
+}
+
+.icon-hail:before {
+    content: "W";
+}
+
+.icon-sleet:before {
+    content: "U";
+}
+
+.icon-dust:before {
+    content: "Z";
+}
+
+.icon-foggy:before {
+    content: "Z";
+}
+
+.icon-haze:before {
+    content: "Z";
+}
+
+.icon-smoky:before {
+    content: "Z";
+}
+
+.icon-blustery:before {
+    content: "Z";
+}
+
+.icon-windy:before {
+    content: "E";
+}
+
+.icon-cold:before {
+    content: "E";
+}
+
+.icon-cloudy:before {
+    content: "3";
+}
+
+.icon-mostly-cloudy-night:before {
+    content: "a";
+}
+
+.icon-mostly-cloudy-day:before {
+    content: "A";
+}
+
+.icon-partly-cloudy-night:before {
+    content: "a";
+}
+
+.icon-partly-cloudy-day:before {
+    content: "A";
+}
+
+.icon-clear-night:before {
+    content: "6";
+}
+
+.icon-sunny:before {
+    content: "1";
+}
+
+.icon-fair-night:before {
+    content: "6";
+}
+
+.icon-fair-day:before {
+    content: "1";
+}
+
+.icon-mixed-rain-and-hail:before {
+    content: "W";
+}
+
+.icon-hot:before {
+    content: "1";
+}
+
+.icon-isolated-thunderstorms:before {
+    content: "S";
+}
+
+.icon-scattered-thunderstorms:before {
+    content: "S";
+}
+
+.icon-scattered-thunderstorms:before {
+    content: "S";
+}
+
+.icon-scattered-showers:before {
+    content: "M";
+}
+
+.icon-heavy-snow:before {
+    content: "W";
+}
+
+.icon-scattered-snow-showers:before {
+    content: "I";
+}
+
+.icon-heavy-snow:before {
+    content: "W";
+}
+
+.icon-partly-cloudy:before {
+    content: "a";
+}
+
+.icon-thundershowers:before {
+    content: "S";
+}
+
+.icon-snow-showers:before {
+    content: "U";
+}
+
+.icon-isolated-thundershowers:before {
+    content: "S";
+}
 
 .weather h2 {
     margin: 0 0 8px;
@@ -152,7 +295,7 @@ i {
 
 .weather li {
     background: #fff;
-    background: rgba(255,255,255,0.90);
+    background: rgba(255, 255, 255, 0.90);
     padding: 20px;
     display: inline-block;
     border-radius: 5px;
@@ -207,6 +350,32 @@ i {
     top: 10px;
 }
 
+.services {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    text-align: right;
+    font-family: 'B612 Mono', monospace;
+    width: 800px;
+}
+
+.service {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.unit {
+    font-size: 14px;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.electricity-range {
+    font-size: 16px;
+    color: #aaa;
+    margin-top: 5px;
+}
+
 .destination-wrapper {
     border: 1px solid;
     padding: 20px;
@@ -238,11 +407,11 @@ i {
     width: 95px;
 }
 
-.trip-time:nth-child( 5 ){
+.trip-time:nth-child(5) {
     width: 70px;
 }
 
-.trip-time:nth-child( n + 6 ) {
+.trip-time:nth-child(n + 6) {
     display: none;
 }
 
@@ -263,7 +432,7 @@ i {
 }
 
 .item-wrapper .footer {
-    background-color: rgba( 0, 0, 0, 0.7 );
+    background-color: rgba(0, 0, 0, 0.7);
     bottom: 0;
     font-weight: 500;
     left: 0;
