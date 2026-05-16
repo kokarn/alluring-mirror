@@ -12,4 +12,5 @@ module.exports = {
     sonarr: require('./sonarr'),
     portainer: require('./portainer'),
     electricity: require('./electricity'),
+    openings: require('./openings'),
 };

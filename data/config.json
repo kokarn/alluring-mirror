@@ -14,6 +14,7 @@
         }
     ],
     "coop": false,
+    "openings": ["baksmedjan"],
     "electricity": {
         "region": "SE3",
         "markup": 2,

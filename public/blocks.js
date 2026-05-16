@@ -16,6 +16,10 @@
             url: 'calendar/'
         }));
 
+        promises.push( $.ajax({
+            url: 'openings/'
+        }));
+
         Promise.all( promises )
             .then( function( values ){
                 console.log( 'got all promises ' );
