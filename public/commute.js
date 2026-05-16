@@ -14,6 +14,10 @@
     };
 
     function shouldDisplay(){
+        if( window.MIRROR_DEBUG ){
+            return true;
+        }
+
         var now = new Date();
         var currentHour = now.getHours();
         var currentMinute = now.getMinutes();
