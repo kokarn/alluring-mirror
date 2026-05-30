@@ -14,7 +14,7 @@
         }
     ],
     "coop": false,
-    "openings": ["baksmedjan"],
+    "openings": ["baksmedjan", "staxangsblommor"],
     "electricity": {
         "region": "SE3",
         "markup": 2,

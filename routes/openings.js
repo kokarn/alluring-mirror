@@ -18,12 +18,62 @@ async function fetchBaksmedjan(start, end) {
     return response.body.data;
 }
 
+// Midsummer's Day (midsommardagen) — the Saturday between June 20 and 26.
+function midsummerDay(year) {
+    const day = moment({ year, month: 5, day: 20 });
+    while (day.day() !== 6) {
+        day.add(1, 'day');
+    }
+    return day;
+}
+
+// Public holidays in the May–midsummer season get weekend hours, matching the
+// rule the shop's own site applies (it hardcodes these dates as "Helger").
+const STAXANGSBLOMMOR_HOLIDAYS = new Set([
+    '05-01', // Första maj
+    '05-14', // Kristi himmelsfärds dag (2026)
+    '06-06', // Sveriges nationaldag
+]);
+
+// Staxängs Blommor has no API — its hours are rule-based on the site:
+// open every day from May 1 until midsummer, weekdays 14-18, weekends/holidays 10-16.
+function fetchStaxangsblommor(start, end) {
+    const result = [];
+    const cursor = moment(start);
+    const last = moment(end);
+
+    while (cursor.isSameOrBefore(last, 'day')) {
+        const seasonEnd = midsummerDay(cursor.year());
+        const inSeason = cursor.month() >= 4 && cursor.isSameOrBefore(seasonEnd, 'day');
+
+        if (inSeason) {
+            const weekendHours = cursor.day() === 0
+                || cursor.day() === 6
+                || STAXANGSBLOMMOR_HOLIDAYS.has(cursor.format('MM-DD'));
+
+            result.push({
+                date: cursor.format('YYYY-MM-DD'),
+                time: weekendHours ? '10-16' : '14-18',
+            });
+        }
+
+        cursor.add(1, 'day');
+    }
+
+    return result;
+}
+
 const PROVIDERS = {
     baksmedjan: {
         name: 'Baksmedjan',
         time: '08-13',
         image: 'https://baksmedjan.se/logo.png',
         fetch: fetchBaksmedjan,
+    },
+    staxangsblommor: {
+        name: 'Staxängs Blommor',
+        image: 'https://www.staxangsblommor.se/img/bg.jpg',
+        fetch: fetchStaxangsblommor,
     },
 };
 
@@ -51,14 +101,17 @@ module.exports = async function (request, response) {
         }
 
         try {
-            const dates = await provider.fetch(today, end);
-            for (const date of dates) {
+            const entries = await provider.fetch(today, end);
+            for (const entry of entries) {
+                const date = typeof entry === 'string' ? entry : entry.date;
+                const time = (typeof entry === 'object' && entry.time) || provider.time;
+
                 if (!result[date]) {
                     result[date] = [];
                 }
                 result[date].push({
                     title: provider.name,
-                    time: provider.time,
+                    time: time,
                     image: provider.image,
                 });
             }
