@@ -48,6 +48,13 @@
         return today.getFullYear() + '-' + zeroPad( today.getMonth() + 1, 2 ) + '-' + zeroPad( today.getDate(), 2 );
     }
 
+    function getTomorrowDate(){
+        var tomorrow = new Date();
+        tomorrow.setDate( tomorrow.getDate() + 1 );
+
+        return tomorrow.getFullYear() + '-' + zeroPad( tomorrow.getMonth() + 1, 2 ) + '-' + zeroPad( tomorrow.getDate(), 2 );
+    }
+
     // Parse the start time into a comparable HHMM number. Handles clock times
     // like "19:00" and opening-hour ranges like "08-13" (which Number() alone
     // turns into NaN, breaking the sort).
@@ -70,6 +77,10 @@
 
         if( getTodayDate() == date ){
             return 'Today';
+        }
+
+        if( getTomorrowDate() == date ){
+            return 'Tomorrow';
         }
 
         switch( dayDate.getDay() ){
