@@ -72,7 +72,7 @@ const PROVIDERS = {
     },
     staxangsblommor: {
         name: 'Staxängs Blommor',
-        image: 'https://www.staxangsblommor.se/img/bg.jpg',
+        image: '/images/staxang-flower.svg',
         fetch: fetchStaxangsblommor,
     },
 };
