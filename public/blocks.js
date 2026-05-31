@@ -48,6 +48,23 @@
         return today.getFullYear() + '-' + zeroPad( today.getMonth() + 1, 2 ) + '-' + zeroPad( today.getDate(), 2 );
     }
 
+    // Parse the start time into a comparable HHMM number. Handles clock times
+    // like "19:00" and opening-hour ranges like "08-13" (which Number() alone
+    // turns into NaN, breaking the sort).
+    function timeValue( time ){
+        if( !time ){
+            return 0;
+        }
+
+        var match = String( time ).match( /(\d{1,2})[:.]?(\d{2})?/ );
+
+        if( !match ){
+            return 0;
+        }
+
+        return Number( match[ 1 ] ) * 100 + Number( match[ 2 ] || 0 );
+    }
+
     function getDayName( date ){
         var dayDate = new Date( date );
 
@@ -93,30 +110,7 @@
         }
 
         items.sort( function( a, b ){
-            var aTime;
-            var bTime;
-
-            if( a.time ){
-                aTime = Number( a.time.replace( /:/gim, '' ) );
-            } else {
-                aTime = 0;
-            }
-
-            if( b.time ){
-                bTime = Number( b.time.replace( /:/gim, '' ) );
-            } else {
-                bTime = 0;
-            }
-
-            if ( aTime < bTime ){
-                return -1;
-            }
-
-            if ( aTime > bTime ) {
-                return 1;
-            }
-
-            return 0;
+            return timeValue( a.time ) - timeValue( b.time );
         } );
 
         for( var i = 0; i < items.length && printed < max_printed; i = i + 1 ){
