@@ -1,1 +1,2 @@
 2026-07-05T21:36:04Z deploy-hook test: verifying Dockhand native event -> Hermes reactor chain
+2026-07-05T21:38:58Z second test after fixing env-subscription + semantic event names
