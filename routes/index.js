@@ -2,6 +2,7 @@ module.exports = {
     myepisodes: require('./myepisodes'),
     images: require('./images'),
     'swedish-hockey': require('./swedish-hockey'),
+    'world-cup': require('./world-cup'),
     vasttrafik: require('./vasttrafik'),
     config: require('./config'),
     calendar: require('./calendar'),

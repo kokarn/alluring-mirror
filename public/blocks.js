@@ -13,6 +13,10 @@
         }));
 
         promises.push( $.ajax({
+            url: 'world-cup/'
+        }));
+
+        promises.push( $.ajax({
             url: 'calendar/'
         }));
 
@@ -139,7 +143,18 @@
     }
 
     function printBlock( $wrapper, item ){
-        var $element = $( '<div class="item-wrapper"><img src="' + item.image + '"></div>' );
+        var $element;
+
+        if( item.flags && item.flags.length === 2 ){
+            $element = $( '<div class="item-wrapper wc-block">' +
+                '<div class="wc-flags">' +
+                    '<img class="wc-flag" src="' + item.flags[ 0 ] + '">' +
+                    '<img class="wc-flag" src="' + item.flags[ 1 ] + '">' +
+                '</div></div>' );
+        } else {
+            $element = $( '<div class="item-wrapper"><img src="' + item.image + '"></div>' );
+        }
+
         var $footer = $( '<div class="footer"></div>' );
 
         if( item.title ){
