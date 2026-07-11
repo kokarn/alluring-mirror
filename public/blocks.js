@@ -76,6 +76,31 @@
         return Number( match[ 1 ] ) * 100 + Number( match[ 2 ] || 0 );
     }
 
+    // Current wall-clock time as a comparable HHMM number.
+    function nowValue(){
+        var now = new Date();
+
+        return now.getHours() * 100 + now.getMinutes();
+    }
+
+    // The time at which an item is considered "over". For an opening-hour range
+    // like "08-13" that's the end (13:00); for a single clock time like "19:00"
+    // it's that time (matching how ical feeds drop events at their start).
+    // Returns null for all-day items (no time) so they never expire.
+    function endValue( time ){
+        if( !time ){
+            return null;
+        }
+
+        var range = String( time ).match( /(\d{1,2})[:.]?(\d{2})?\s*-\s*(\d{1,2})[:.]?(\d{2})?/ );
+
+        if( range ){
+            return Number( range[ 3 ] ) * 100 + Number( range[ 4 ] || 0 );
+        }
+
+        return timeValue( time );
+    }
+
     function getDayName( date ){
         var dayDate = new Date( date );
 
@@ -122,6 +147,21 @@
 
         if( dayDate.getTime() > startOfTodayDate.getTime() + 7 * 24 * 60 * 60 * 1000 ){
             return false;
+        }
+
+        // For today, drop items that have already ended (timed items only;
+        // all-day items with no time are kept). Other feeds' day-level filter
+        // handles past days, but ical feeds already omit past events by
+        // starting their window at "now" — this brings world-cup/openings and
+        // any future timed feed in line for the current day.
+        if( getTodayDate() == day ){
+            var current = nowValue();
+
+            items = items.filter( function( item ){
+                var ends = endValue( item.time );
+
+                return ends === null || ends >= current;
+            } );
         }
 
         items.sort( function( a, b ){
