@@ -478,7 +478,57 @@ iframe,
     height: 550px;
 }
 
-/* Weather Warnings */
+/* Weather Warnings — compact SMHI chip ticker on the top bar (left of the
+   electricity price in .services). Info-level notices stay muted grey; real
+   Gul/Orange/Röd warnings colour up (and red blinks). Empty when no warnings. */
+.warnings-ticker {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    z-index: 5;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 9px;
+    align-items: center;
+}
+
+.warnings-lead {
+    font-size: 16px;
+    color: #7a7a7a;
+    letter-spacing: 1px;
+}
+
+.warning-chip {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 15px;
+    line-height: 1;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    color: #b0b0b0;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.warning-chip.level-yellow {
+    color: #ffd700;
+    border-color: rgba(255, 215, 0, 0.45);
+}
+
+.warning-chip.level-orange {
+    color: #ff8c00;
+    border-color: rgba(255, 140, 0, 0.45);
+}
+
+.warning-chip.level-red {
+    color: #ff4444;
+    border-color: rgba(255, 68, 68, 0.55);
+    font-weight: bold;
+    animation: blink 2s infinite;
+}
+
+/* Real warnings (Gul/Orange/Röd) render as full cards under the forecast. */
 .weather-warnings {
     margin-top: 20px;
     text-align: left;
@@ -494,7 +544,6 @@ iframe,
     border-left: 5px solid transparent;
     background: rgba(255, 255, 255, 0.1);
 }
-
 
 .weather-warning small {
     display: block;

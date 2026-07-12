@@ -8,38 +8,64 @@
             .then(function (weather) {
                 html = '';
 
-                let warningsHtml = '';
+                // SMHI warnings split by severity:
+                //  - MESSAGE (Meddelande / info-level advisories) -> compact chip
+                //    ticker on the top bar, next to the electricity price.
+                //  - YELLOW / ORANGE / RED (real warnings) -> full cards under
+                //    the forecast, so they actually stand out.
+                let tickerHtml = '';
+                let cardsHtml = '';
                 if (weather.warnings && weather.warnings.length > 0) {
-                    warningsHtml += '<div class="weather-warnings">';
-                    weather.warnings.forEach(function (warning) {
+                    // Turn "Risk för vattenbrist - Grundvatten och vattendrag" into "Vattenbrist".
+                    const shortLabel = function (description) {
+                        let label = description
+                            .replace(/^Risk för\s+/i, '')
+                            .replace(/\s*[-–—].*$/, '')
+                            .trim();
+                        return label.charAt(0).toUpperCase() + label.slice(1);
+                    };
+
+                    const formatRange = function (warning) {
                         const start = new Date(warning.approximateStart);
                         const end = new Date(warning.approximateEnd);
                         const isValid = (d) => d instanceof Date && !isNaN(d.getTime());
                         const formatTime = (d) => d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
                         const formatDate = (d) => d.toLocaleDateString('sv-SE', { weekday: 'short', day: 'numeric', month: 'short' });
 
-                        // Long-running warnings (e.g. "Risk för vattenbrist") have no
-                        // approximateEnd, so show an open-ended range in that case.
-                        let displayRange = '';
                         if (!isValid(start)) {
-                            displayRange = isValid(end) ? 'till ' + formatDate(end) + ' ' + formatTime(end) : '';
+                            return isValid(end) ? 'till ' + formatDate(end) + ' ' + formatTime(end) : '';
                         } else if (!isValid(end)) {
-                            displayRange = formatDate(start) + ' ' + formatTime(start) + ' - tills vidare';
+                            return formatDate(start) + ' ' + formatTime(start) + ' - tills vidare';
                         } else if (start.toDateString() === end.toDateString()) {
-                            displayRange = formatDate(start) + ' ' + formatTime(start) + ' - ' + formatTime(end);
-                        } else {
-                            displayRange = formatDate(start) + ' ' + formatTime(start) + ' - ' + formatDate(end) + ' ' + formatTime(end);
+                            return formatDate(start) + ' ' + formatTime(start) + ' - ' + formatTime(end);
                         }
+                        return formatDate(start) + ' ' + formatTime(start) + ' - ' + formatDate(end) + ' ' + formatTime(end);
+                    };
 
-                        warningsHtml += '<div class="weather-warning level-' + warning.levelCode.toLowerCase() + '">';
-                        warningsHtml += warning.areaName + ': ' + warning.description + '<br>';
-                        if (displayRange) {
-                            warningsHtml += '<small>' + displayRange + '</small>';
+                    weather.warnings.forEach(function (warning) {
+                        const level = (warning.levelCode || 'message').toLowerCase();
+
+                        if (level === 'message') {
+                            tickerHtml += '<span class="warning-chip level-' + level + '">' + shortLabel(warning.description) + '</span>';
+                        } else {
+                            const displayRange = formatRange(warning);
+                            cardsHtml += '<div class="weather-warning level-' + level + '">';
+                            cardsHtml += warning.areaName + ': ' + warning.description + '<br>';
+                            if (displayRange) {
+                                cardsHtml += '<small>' + displayRange + '</small>';
+                            }
+                            cardsHtml += '</div>';
                         }
-                        warningsHtml += '</div>';
                     });
-                    warningsHtml += '</div>';
+
+                    if (tickerHtml) {
+                        tickerHtml = '<span class="warnings-lead">&#9888; SMHI</span>' + tickerHtml;
+                    }
+                    if (cardsHtml) {
+                        cardsHtml = '<div class="weather-warnings">' + cardsHtml + '</div>';
+                    }
                 }
+                $('.js-warnings').html(tickerHtml);
 
                 html +=
                     '<div class="current-weather-wrapper">' +
@@ -64,7 +90,7 @@
                 }
 
                 html = html + '</div>';
-                html = html + warningsHtml;
+                html = html + cardsHtml;
 
                 $('.js-weather').html(html);
             })
