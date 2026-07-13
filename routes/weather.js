@@ -226,6 +226,42 @@ module.exports = function (request, response) {
                     }
                 }
             }
+
+            // SMHI often issues several distinct warning areas with the same
+            // level + description that all cover the house (e.g. two "Höga
+            // temperaturer" Meddelanden with adjacent/overlapping time spans, or
+            // the same event split across neighbouring polygons). Rendering each
+            // one produces duplicate-looking cards. Collapse by levelCode+
+            // description into a single entry spanning the union of their time
+            // windows (earliest start → latest end; an open-ended end wins).
+            const merged = new Map();
+            const ms = (v) => {
+                const t = Date.parse(v);
+                return isNaN(t) ? null : t;
+            };
+            for (const w of returnData.warnings) {
+                const key = w.levelCode + '|' + w.description;
+                const existing = merged.get(key);
+                if (!existing) {
+                    merged.set(key, Object.assign({}, w));
+                    continue;
+                }
+                // Earliest known start.
+                const es = ms(existing.approximateStart);
+                const ns = ms(w.approximateStart);
+                if (ns !== null && (es === null || ns < es)) {
+                    existing.approximateStart = w.approximateStart;
+                }
+                // Latest known end; a missing/open-ended end ("tills vidare") wins.
+                const ee = ms(existing.approximateEnd);
+                const ne = ms(w.approximateEnd);
+                if (w.approximateEnd == null) {
+                    existing.approximateEnd = null;
+                } else if (existing.approximateEnd != null && ne !== null && (ee === null || ne > ee)) {
+                    existing.approximateEnd = w.approximateEnd;
+                }
+            }
+            returnData.warnings = Array.from(merged.values());
         })
         .catch((warningError) => {
             console.error('Error fetching SMHI warnings:', warningError.message);
