@@ -50,7 +50,7 @@
                         } else {
                             const displayRange = formatRange(warning);
                             cardsHtml += '<div class="weather-warning level-' + level + '">';
-                            cardsHtml += warning.areaName + ': ' + warning.description + '<br>';
+                            cardsHtml += warning.description + '<br>';
                             if (displayRange) {
                                 cardsHtml += '<small>' + displayRange + '</small>';
                             }
