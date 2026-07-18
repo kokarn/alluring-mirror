@@ -262,6 +262,17 @@ module.exports = function (request, response) {
                 }
             }
             returnData.warnings = Array.from(merged.values());
+
+            // Drop warnings whose window has already ended. SMHI keeps expired
+            // warnings in the feed for a while after approximateEnd passes, so
+            // without this the mirror shows alerts that are already over (e.g. a
+            // "Skyfallsliknande regn" YELLOW that ended hours ago). Open-ended
+            // advisories (approximateEnd null / "tills vidare") are always kept.
+            const nowMs = Date.now();
+            returnData.warnings = returnData.warnings.filter((w) => {
+                const end = ms(w.approximateEnd);
+                return end === null || end >= nowMs;
+            });
         })
         .catch((warningError) => {
             console.error('Error fetching SMHI warnings:', warningError.message);
