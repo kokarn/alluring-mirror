@@ -14,4 +14,5 @@ module.exports = {
     portainer: require('./portainer'),
     electricity: require('./electricity'),
     openings: require('./openings'),
+    hemglass: require('./hemglass'),
 };

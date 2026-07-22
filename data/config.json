@@ -16,6 +16,10 @@
     ],
     "coop": false,
     "openings": ["baksmedjan", "staxangsblommor"],
+    "hemglass": {
+        "latitude": 58.421126,
+        "longitude": 11.570132
+    },
     "electricity": {
         "region": "SE3",
         "markup": 2,

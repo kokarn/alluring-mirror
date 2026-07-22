@@ -24,6 +24,10 @@
             url: 'openings/'
         }));
 
+        promises.push( $.ajax({
+            url: 'hemglass/'
+        }));
+
         Promise.all( promises )
             .then( function( values ){
                 console.log( 'got all promises ' );

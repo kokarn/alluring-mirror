@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a4a9c"/>
+      <stop offset="1" stop-color="#002d6b"/>
+    </linearGradient>
+  </defs>
+  <rect width="160" height="160" fill="url(#bg)"/>
+  <!-- Hemglass truck illustration, viewBox 0 0 24 42, rotated to face right and centered -->
+  <g transform="translate(80,80) rotate(90) scale(3.1) translate(-12,-21)">
+    <path fill="#8fc7e8" d="M5.24,0.84c-3.38,1.7-3.38,7-3.38,8.52l0.01,0.83c-0.2-0.03-0.41-0.01-0.62,0.06l-0.48,0.17 c-0.59,0.21-0.89,0.86-0.68,1.45l0.19,0.54c0.03,0.1,0.14,0.15,0.24,0.11l1.37-0.49l0.34,26.96c0,1.2,0.86,2.22,2.02,2.43 l0.01,0l0.06,0.01c0.14,0.02,0.28,0.04,0.43,0.04h10.94c0.15,0,0.29-0.01,0.43-0.04l0.06-0.01l0.01,0 c1.16-0.21,2.02-1.23,2.02-2.43l0.34-26.96l1.37,0.49c0.1,0.04,0.21-0.01,0.24-0.11l0.19-0.54c0.21-0.59-0.09-1.24-0.68-1.45 l-0.48-0.17c-0.21-0.07-0.42-0.09-0.62-0.06l0.01-0.83c0-1.52,0-6.82-3.38-8.52C15.03,0.3,13.55,0,12,0S8.97,0.3,5.24,0.84z"/>
+    <path fill="#fff" d="M18.5,10.5c0,0.55-0.45,1-1,1h-11c-0.55,0-1-0.45-1-1v-1c0-0.55,0.45-1,1-1h11c0.55,0,1,0.45,1,1V10.5z"/>
+    <rect x="6" y="14" width="12" height="9" rx="1" fill="#fff"/>
+    <rect x="6" y="25" width="12" height="9" rx="1" fill="#fff"/>
+  </g>
+  <text x="80" y="150" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="0.5">Hemglass</text>
+</svg>
