@@ -28,6 +28,10 @@
             url: 'hemglass/'
         }));
 
+        promises.push( $.ajax({
+            url: 'custom-blocks/feed'
+        }));
+
         Promise.all( promises )
             .then( function( values ){
                 console.log( 'got all promises ' );
@@ -202,14 +206,18 @@
         var $footer = $( '<div class="footer"></div>' );
 
         if( item.title ){
-            $footer.append( '<span class="title"> ' + item.title + '</span>' );
+            $footer.append( $( '<span class="title"></span>' ).text( item.title ) );
+        }
+
+        if( item.text ){
+            $footer.append( $( '<span class="text"></span>' ).text( item.text ) );
         }
 
         if( item.time ){
-            $footer.append( '<time>' + item.time + '</time>' );
+            $footer.append( $( '<time></time>' ).text( item.time ) );
         }
 
-        if( item.title || item.time ){
+        if( item.title || item.text || item.time ){
             $element.append( $footer );
         }
 

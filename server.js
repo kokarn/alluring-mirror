@@ -12,6 +12,7 @@ const app = express();
 const DEFAULT_PORT = 4000;
 
 const IMAGE_CACHE_PATH = path.join( __dirname, '.', 'data', 'image-cache' );
+const CUSTOM_UPLOAD_PATH = path.join( __dirname, '.', 'data', 'custom-block-uploads' );
 
 try {
     fs.mkdirSync(IMAGE_CACHE_PATH);
@@ -23,8 +24,10 @@ try {
 
 app.use( cors() );
 app.use( fileUpload() );
+app.use( express.json({ limit: '1mb' }) );
 app.use( express.urlencoded( { extended: true } ) );
 app.use( express.static( 'public' ) );
+app.use( '/uploads', express.static( CUSTOM_UPLOAD_PATH ) );
 
 for ( const route in routes ) {
     app.use( `/${ route }/*`, routes[ route ] );

@@ -3,64 +3,27 @@ const path = require( 'path' );
 
 module.exports = function( request, response ){
     const configPath = path.join( __dirname, '..', 'data', 'config.json' );
-    let displayError = false;
 
-    if ( request.method === 'POST' ) {
-        try {
-            const data = JSON.parse( request.body.config );
-
-            fs.writeFileSync( configPath, JSON.stringify( data, null, 4 ) );
-        } catch ( parseError ) {
-            console.error( parseError );
-            displayError = parseError;
-        }
+    if( request.method === 'GET' ){
+        return response.sendFile( path.join( __dirname, '..', 'public', 'admin.html' ) );
     }
 
-    fs.readFile( configPath, ( readError, fileContents ) => {
-        if ( readError ) {
-            response.send( readError );
+    if( request.method !== 'POST' ){
+        return response.status( 405 ).send({ error: 'Method not allowed' });
+    }
 
-            return false;
-        }
+    try {
+        const data = typeof request.body.config === 'string' ? JSON.parse( request.body.config ) : request.body;
+        fs.writeFileSync( configPath, JSON.stringify( data, null, 4 ) );
 
-        let responseString = `
-            <!DOCTYPE html>
-            <head>
-                <title>
-                    Edit config
-                </title>
-                <style>
-                    * {
-                        box-sizing: border-box;
-                    }
+        // Routes hold a reference to Node's cached JSON export. Mutating that object
+        // applies settings immediately without restarting the mirror container.
+        const cachedConfig = require( configPath );
+        Object.keys( cachedConfig ).forEach( key => delete cachedConfig[ key ] );
+        Object.assign( cachedConfig, data );
 
-                    html,
-                    body {
-                        min-height: 100%;
-                        height: 100%;
-                    }
-
-                    body {
-                        overflow: hidden;
-                    }
-
-                    textarea {
-                        min-height: 600px;
-                        width: 100%;
-                    }
-                </style>
-            </head>
-            <body>
-            <form method="post" action=".">
-                <textarea name="config">${ fileContents }</textarea>
-                <input type="submit" value="Save">
-            </form>
-        `;
-
-        if ( displayError ) {
-            responseString = `${ responseString }<pre>${ displayError }</pre>`;
-        }
-
-        response.send( responseString );
-    } );
+        return response.send({ success: true, config: data });
+    } catch( error ){
+        return response.status( 400 ).send({ error: error.message });
+    }
 };

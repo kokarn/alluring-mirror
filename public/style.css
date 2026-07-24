@@ -448,6 +448,15 @@ i {
     text-overflow: ellipsis;
 }
 
+.item-wrapper .footer .text {
+    color: #ddd;
+    font-size: 12px;
+    overflow: hidden;
+    padding: 0 5px 3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .wc-block .wc-flags {
     position: absolute;
     top: 0;

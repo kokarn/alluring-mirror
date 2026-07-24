@@ -15,4 +15,5 @@ module.exports = {
     electricity: require('./electricity'),
     openings: require('./openings'),
     hemglass: require('./hemglass'),
+    'custom-blocks': require('./custom-blocks'),
 };

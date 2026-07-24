@@ -1,3 +1,5 @@
 node_modules
 .env
 docker-compose.yml
+data/custom-blocks.json
+data/custom-block-uploads/
