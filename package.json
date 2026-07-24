@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node test/custom-blocks.test.js",
+    "test": "node test/custom-blocks.test.js && node test/admin-assets.test.js",
     "start": "node server.js",
     "dev": "node --watch --env-file=.env server.js"
   },
