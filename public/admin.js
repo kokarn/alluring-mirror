@@ -42,8 +42,14 @@
     function updatePreview( override ){
         var file = form.elements.imageFile.files[ 0 ];
         var image = override || ( file ? URL.createObjectURL( file ) : form.elements.imageUrl.value || form.elements.imageUrl.dataset.current );
-        document.querySelector( '#preview' ).style.backgroundImage = image ? 'url("' + image.replace( /"/g, '' ) + '")' : '';
+        var previewImage = document.querySelector( '#preview-image' );
+        previewImage.src = image || '';
+        previewImage.hidden = !image;
         document.querySelector( '#preview-caption' ).textContent = form.elements.title.value || 'Your block preview';
+        document.querySelector( '#preview-text' ).textContent = form.elements.text.value || '';
+        document.querySelector( '#preview-text' ).hidden = !form.elements.text.value;
+        document.querySelector( '#preview-time' ).textContent = form.elements.time.value || '';
+        document.querySelector( '#preview-time' ).hidden = !form.elements.time.value;
     }
     form.addEventListener( 'input', function(){ updatePreview(); } );
     form.addEventListener( 'submit', function( event ){
